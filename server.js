@@ -2,9 +2,28 @@ const express = require('express')
 
 const server = express();
 
+
+// POST, GET, PUT/RETRIEVE, PATCH/UPDATE, DELETE
+
 server.get('/', (req, res) => {
-    res.setHeader('Content-type', 'application/json')
-    res.send('Server Started...')
+    res.setHeader('Content-type', 'text/html')
+    res.send('Server Started at get method...')
+    res.end()
+})
+server.post('/', (req, res) => {
+    res.send('Server Started at post method...')
+    res.end()
+})
+server.put('/', (req, res) => {
+    res.send('Server Started at put method...')
+    res.end()
+})
+server.patch('/', (req, res) => {
+    res.send('Server Started at patch method...')
+    res.end()
+})
+server.delete('/', (req, res) => {
+    res.send('Server Started at delete method...')
     res.end()
 })
 
