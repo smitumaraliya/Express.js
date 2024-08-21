@@ -1,17 +1,27 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 let userSchema = mongoose.Schema({
     firstName: String,
     lastName: {
-        Type: String
+        type: String
     },
     email: {
-        Type: String,
+        type: String,
+        unique: true
     },
     age: {
-        Type: String
+        type: Number
     },
-    hobbies: [{ Type: String }],
+    password: {
+        type: String
+    },
+    mobileNo: {
+        type: String
+    },
+    profileImage: {
+        type: String
+    },
+    hobbies: [{ type: String }],
     address: {
         line1: String,
         line2: String,

@@ -1,16 +1,20 @@
 const express = require('express')
 const userRoutes = express.Router();
 
-const { addNewUser, getAllUser, getUser, replaceUser, updateUser, deleteUser } = require('../controller/user.controller')
+// const { addNewUser, getAllUser, getUser, replaceUser, updateUser, deleteUser } = require('../controller/user.controller')
 
-userRoutes.post('/', addNewUser);
+const { registerUser } = require('../controller/register.controller')
 
-userRoutes.get('/', getAllUser);
+// userRoutes.post('/', addNewUser);
 
-userRoutes.get('/get-user', getUser);
+// userRoutes.get('/', getAllUser);
 
-userRoutes.patch('/', updateUser);
+// userRoutes.get('/get-user', getUser);
 
-userRoutes.delete('/', deleteUser);
+// userRoutes.patch('/', updateUser);
+
+// userRoutes.delete('/', deleteUser);
+
+userRoutes.post('/register', registerUser);
 
 module.exports = userRoutes;
