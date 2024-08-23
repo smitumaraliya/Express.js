@@ -25,5 +25,5 @@ app.listen(PORT, () => {
     mongoose.connect(URL)
         .then(() => console.log('Server Connection Sucessfully'))
         .catch((err => console.log(err)))
-    console.log(`Server Staeted at http://127.0.0.1:${PORT}`);
+    console.log(`Server Started at http://127.0.0.1:${PORT}`);
 })

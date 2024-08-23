@@ -3,7 +3,8 @@ const userRoutes = express.Router();
 
 // const { addNewUser, getAllUser, getUser, replaceUser, updateUser, deleteUser } = require('../controller/user.controller')
 
-const { registerUser } = require('../controller/register.controller')
+const { registerUser, loginUser, getProfile } = require('../controller/register.controller');
+const { verifyToken } = require('../helpers/verifyToken');
 
 // userRoutes.post('/', addNewUser);
 
@@ -16,5 +17,9 @@ const { registerUser } = require('../controller/register.controller')
 // userRoutes.delete('/', deleteUser);
 
 userRoutes.post('/register', registerUser);
+
+userRoutes.post('/login', loginUser);
+
+userRoutes.get('/me', verifyToken, getProfile);
 
 module.exports = userRoutes;

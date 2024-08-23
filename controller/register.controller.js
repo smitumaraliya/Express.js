@@ -1,4 +1,5 @@
 const User = require('../model/user.model')
+const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 exports.registerUser = async (req, res) => {
@@ -7,9 +8,9 @@ exports.registerUser = async (req, res) => {
         if (user) {
             return res.json({ message: 'User Already Existed...' })
         }
-        let hashPassword = await bcrypt.hash(req.body.password, 10)
-        // console.log(hashPassword);
-        user = await User.create({ ...req, body, password: hashPassword })
+        let hashPassword = await bcrypt.hash(req.body.password, 7)
+        console.log(hashPassword);
+        user = await User.create({ ...req.body, password: hashPassword })
         res.status(201).json({ user, message: 'Register Successfully...' })
         // console.log(user);
     } catch (err) {
@@ -29,7 +30,17 @@ exports.loginUser = async (req, res) => {
         if (!comparedPassword) {
             return res.json({ message: 'Email or Password does not matched' })
         }
-        res.status(200).json({ message: 'Login Successfully...', user })
+        let token = await jwt.sign({ userId: user._id }, process.env.JWT_TOKEN)
+        res.status(200).json({ message: 'Login Successfully...', token })
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Internal Server Error...' })
+    }
+}
+
+exports.getProfile = async (req, res) => {
+    try {
+        res.json(req.user)
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: 'Internal Server Error...' })
